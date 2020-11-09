@@ -1,6 +1,6 @@
 # YensoGram
 
-The default branch holds my best work so far. This project was created as a result of the requirement to complete [Harvard University's CS50 Final Project](https://cs50.harvard.edu/x/2020/project/).
+This project was created as a result of the requirement to complete [Harvard University's CS50 Final Project](https://cs50.harvard.edu/x/2020/project/).
 
 ### PROJECT DESCRIPTION
 
