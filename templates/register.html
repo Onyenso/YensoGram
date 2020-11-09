@@ -1,0 +1,191 @@
+{% extends "layout.html" %}
+
+{% block title %}Sign Up{% endblock %}
+
+
+{% block main %}
+
+
+
+    <div class="row justify-content-center pt-5">
+        <div class="col-md-4">
+
+
+            <form action="/register" method="post" style="margin-bottom:20px" id="form">
+                <div class="form-group">
+                    <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text" id="username">
+                </div>
+                <div class="form-group">
+                    <input autocomplete="off" autofocus class="form-control" name="email" placeholder="Email" type="email" id="email">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" name="password" placeholder="Password" type="password" id="password">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" name="confirmation" placeholder="Confirm Password" type="password" id="confirm">
+                </div>
+                <button style="margin-left: 120px;" class="btn btn-primary" type="submit" id="button" disabled>Sign Up</button>
+            </form>
+
+
+            <div style="font-size:large">Already have an accont? <a href="/login">Log In</a>.</div>
+            <div style="font-size:x-small;">View <a href="#" data-toggle="modal" data-target="#staticBackdrop">Terms of Sevice</a> and <a href="#" data-toggle="modal" data-target="#staticBackdro">Data Policy</a>.</div>
+
+
+
+        </div>
+    </div>
+
+        <!-- Modal for Terms of Service-->
+        <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title" id="staticBackdropLabel">Terms of Service</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Welcome to YensoGram!</p>
+
+                These Terms govern your use of YensoGram (also referred herein as “our Software”). We don’t charge you to use YensoGram or
+                the other Software and services covered by these Terms.
+
+                <h5>The services we provide</h5>
+                <p>Our mission is to give people the power to build community and bring the world closer
+                together. To help advance this mission, we provide the Software and services described
+                below to you:</p>
+
+
+                1. Connect you with people and organisations that you care about:
+                <p>We help you find and connect with people, groups, businesses, organisations and others
+                that matter to you. Stronger ties make for better communities, and we believe that our services are
+                most useful when people are connected to people, groups and organisations that they care about.</p>
+
+                2. Research ways to make our services better:
+                <p>We engage in research to develop, test and improve YensoGram. This includes analysing the data
+                we have about our users and understanding how people use our Software, for example by conducting
+                surveys and testing and troubleshooting new features. Our Data Policy explains how we use data to
+                support this research for the purposes of developing and improving our services.</p>
+
+                <h5>Your commitments to YensoGram and our community</h5>
+                <p>We provide these services to you and others to help advance our mission. In exchange, we need you to
+                make the following commitments:</p>
+
+                1. Who can use YensoGram
+                <p>When people stand behind their opinions and actions, our community is safer and more accountable. For this reason, you must:</p>
+                <ul>
+                    <li>provide accurate information about yourself</li>
+                    <li>create only one account (your own) and use your timeline for personal purposes and</li>
+                    <li>not share your password, give access to your YensoGram account to others or transfer your account to anyone else (without our permission).</li>
+                </ul>
+
+                We try to make YensoGram broadly available to everyone, but you cannot use YensoGram if:
+                <ul>
+                    <li>You are under 13 years old (or the minimum legal age in your country to use our Software).</li>
+                    <li>You are a convicted sex offender.</li>
+                    <li>We've previously disabled your account for violations of our Terms or Policies.</li>
+                    <li>You are prohibited from receiving our Software, services or software under applicable laws.</li>
+                </ul>
+
+                <p>2. What you can share and do on YensoGram</p>
+                We want people to use YensoGram to express themselves and to share content that is important to them, but
+                not at the expense of the safety and well-being of others or the integrity of our community. You therefore
+                agree not to engage in (or to facilitate or support others in doing so) the conduct described below:
+
+                <ol>
+                    <li>You may not use our Software to do or share anything:</li>
+                        <ul>
+                            <li>that is unlawful, misleading, discriminatory or fraudulent.</li>
+                            <li>that infringes or violates someone else's rights, including their intellectual property rights.</li>
+                        </ul>
+
+                    <li>You may not upload viruses or malicious code, or do anything that could disable, overburden or impair the proper working or appearance of our Software.</li>
+                    <li>You may not access or collect data from our Software using automated means (without our prior permission) or attempt to access data that you do not have permission to access.</li>
+                </ol>
+
+                To help support our community, we encourage you to report content or conduct that you believe violates your rights
+                (including intellectual property rights) or our terms and policies.
+
+
+                <p>By using our Software, you agree to these terms.</p>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Understood</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Modal for Data Policy-->
+        <div class="modal fade" id="staticBackdro" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdroLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdroLabel">Data Policy</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+
+                <p>This Policy describes the information we process to support YensoGram.</p>
+
+                <h5>What kinds of information do we collect?</h5>
+                <ol>
+                    <li>
+                        <b>Information and content you provide.</b>
+                        <p>We collect the content, communications and other information you provide when you use our Software,
+                        including when you sign up for an account, create or share content and message or communicate with others.
+                        This can include information in or about the content that you provide (e.g. metadata).</p>
+                    </li>
+                    <li>
+                        <b>Networks and connections.</b>
+                        <p>We collect information about the people, pages, accounts, hashtags and groups that you are connected to and
+                        how you interact with them across our Software, such as people you communicate with the most or groups that you
+                        are part of.</p>
+                    </li>
+                    <li>
+                        <b>Your usage.</b>
+                        <p>We collect information about how you use our Software, such as the types of content that you view or engage with,
+                        the features you use, the actions you take, the people or accounts you interact with and the time, frequency and
+                        duration of your activities. For example, we log when you're using and have last used our Software, and what posts,
+                        and other content you view on our Software.</p>
+                    </li>
+                </ol>
+
+                <h5>How do we use this information?</h5>
+                <ol>
+                    <li>
+                        <b>Promote safety, integrity and security.</b>
+                        <p>We use the information that we have to verify accounts and activity, combat harmful conduct, detect and prevent
+                        spam and other bad experiences, maintain the integrity of our Software, and promote safety and security on and off
+                        YensoGram. For example, we use data that we have to investigate suspicious activity or breaches of our Terms
+                        or Policies, or to detect when someone needs help.</p>
+                    </li>
+                    <li>
+                        <b>Communicate with you.</b>
+                        <p>We use the information that we have to communicate with you about our Software and
+                        let you know about our Policies and Terms. We also use your information to respond to you when you contact us.</p>
+                    </li>
+                    <li>
+                        <b>Research and innovate for social good.</b>
+                        <p>We use the information we have to conduct and support research
+                        and innovation on topics of general social welfare, technological advancement, public interest, health and well-being. For
+                        example, we analyse information that we have about migration patterns during crises to aid relief efforts.
+                    </li>
+                </ol>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Understood</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+{% endblock %}

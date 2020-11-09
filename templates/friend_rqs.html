@@ -1,0 +1,42 @@
+
+
+
+
+{% extends "layout.html" %}
+
+{% block title %}Friend Requests{% endblock %}
+
+{% block user %}{{ session["username"] }}{% endblock %}
+
+{% block active2 %}active{% endblock %}
+
+{% block badges %}{{ badges["badges"] }}{% endblock %}
+
+
+
+{% block main %}
+
+    <div style="text-align: center;" class="p-5">
+
+        {% if not friend_rqs["rqs"] %}
+        <p style="font-size:large">You have no friend requests.</p>
+
+        {% else %}
+
+            {% for line in friend_rqs["rqs"] %}
+
+                <div class="m-2" style="font-size:large"><span class="align-middle"><a href="/account/{{ line['username'] }}">{{ line["username"] }}, {{ line["time_fr"] }}.</a></span>
+
+                <a href="/friend_requests_accept/{{ line['username'] }}" class="btn btn-success">Accept</a> |
+                <a href="/friend_requests_decline/{{ line['username'] }}" class="btn btn-danger">Decline</a></div>
+
+
+
+            {% endfor %}
+
+        {% endif %}
+
+    </div>
+
+
+{% endblock %}

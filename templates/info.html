@@ -1,0 +1,18 @@
+
+
+
+
+{% extends "layout.html" %}
+
+{% block title %}Sorry{% endblock %}
+
+{% block user %}{{ user }}{% endblock %}
+
+{% block badges %}{{ badges["badges"] }}{% endblock %}
+
+{% block main %}
+
+    <div style="font-size: large;">{{ info }}</div>
+    <a class="btn btn-primary" href="/add_friend">Find Friends</a>
+
+{% endblock %}

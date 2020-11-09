@@ -1,0 +1,145 @@
+
+
+
+
+{% extends "layout.html" %}
+
+{% block title %}Messages{% endblock %}
+<div id="top"></div>
+{% block user %}{{ session["username"] }}{% endblock %}
+
+{% block badges %}{{ badges["badges"] }}{% endblock %}
+
+{% block main %}
+
+
+
+
+    <div class="row justify-content-center pt-5">
+        <div class="col-md-6">
+            <h3 class="mb-2"><a href="/account/{{ some_user['username'] }}">{{ some_user['username'] }}</a></h3>
+
+            {% if not read_messages and not unread["no_unread"] %}
+
+                <p>No conversation yet</p>
+
+            {% else %}
+
+                <div>
+                    {% if read_messages %}
+                        {% for message in read_messages%}
+
+                            {% if message["sent"] == 1 %}
+
+                                <div style="text-align: right;" class="m-2"><span class="d-inline-block p-1 messages"><a style="text-decoration: none;" data-toggle="modal" data-target="#a{{ message['id'] }}" href="#">{{ message['message'] }}</a></span>
+                                    <div style="font-size: xx-small">{{ message["time"] }}</div>
+                                </div>
+
+                                <!-- Modal for sent message -->
+                                <div class="modal fade" id="a{{ message['id'] }}" tabindex="-1" aria-labelledby="a{{ message['id'] }}Label" aria-hidden="true">
+                                  <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h5 class="modal-title" id="a{{ message['id'] }}Label">Delete Message</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                      </div>
+                                      <div class="modal-body">
+                                        {{ message["message"] }}
+                                      </div>
+                                      <div class="modal-footer">
+                                        <a class="btn btn-primary" href="/delete_everyone/{{ message['friend'] }}/{{ message['id'] }}">Delete for everyone</a>
+                                        <a class="btn btn-primary" href="/delete_me/{{ message['friend'] }}/{{ message['id'] }}">Delete for me</a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                            {% else %}
+
+                                <div style="text-align: left;" class="m-2"><span class="d-inline-block p-1 messages"><a style="text-decoration: none;" data-toggle="modal" data-target="#b{{ message['id'] }}" href="#">{{ message['message'] }}</a></span>
+                                    <div style="font-size: xx-small">{{ message["time"] }}</div>
+                                </div>
+
+                                <!-- Modal for received message -->
+                                <div class="modal fade" id="b{{ message['id'] }}" tabindex="-1" aria-labelledby="b{{ message['id'] }}Label" aria-hidden="true">
+                                  <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h5 class="modal-title" id="b{{ message['id'] }}Label">Delete Message</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                      </div>
+                                      <div class="modal-body">
+                                        {{ message["message"] }}
+                                      </div>
+                                      <div class="modal-footer">
+                                        <a class="btn btn-primary" href="/delete_everyone/{{ message['friend'] }}/{{ message['id'] }}">Delete for everyone</a>
+                                        <a class="btn btn-primary" href="/delete_me/{{ message['friend'] }}/{{ message['id'] }}">Delete for me</a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                            {% endif %}
+
+
+                        {% endfor %}
+                    {% endif %}
+
+                    {% if unread["no_unread"] %}
+                        <div>
+                            <hr style="background-color: white;">
+                            <div class="text-muted" style="text-align: center;">{{ unread["no_unread"] }} unread message(s)</div>
+                            <hr style="background-color: white;">
+                        </div>
+
+                        {% for message in unread["unread_messages"] %}
+
+                            <div style="text-align: left;" class="m-2"><span style="color: lightblue;" class="d-inline-block p-1 messages">{{ message["message"] }}</span>
+                                <div style="font-size: xx-small">{{ message["time"] }}</div>
+                            </div>
+
+                        {% endfor %}
+
+                    {% endif %}
+
+                </div>
+
+
+            {% endif %}
+
+            <a href="#top" title="Back to top" class="material-icons google">north</a>
+
+            <form class="mb-2" action="/{{ some_user['id'] }}/{{ some_user['username'] }}" method="post">
+                <div class="form-group">
+                    <textarea name="message" autofocus class="form-control"  rows="3" placeholder="Send a message to {{ some_user['username'] }}" id="message"></textarea>
+                </div>
+                <input id="buttonm" value="Send" class="btn btn-primary offset-9 offset-md-10" type="submit" disabled>
+            </form>
+
+        </div>
+    </div>
+
+    <script>
+        // For message form button disabling
+            document.querySelector("#message").onkeyup = function()
+            {
+                message = document.querySelector("#message").value;
+
+                if (message === "")
+                {
+                    document.querySelector("#buttonm").disabled = true;
+                }
+                else
+                {
+                    document.querySelector("#buttonm").disabled = false;
+                }
+            };
+    </script>
+
+
+
+{% endblock %}

@@ -1,0 +1,41 @@
+
+
+
+
+{% extends "layout.html" %}
+
+{% block title %}Add Friend{% endblock %}
+
+{% block user %}{{ session["username"] }}{% endblock %}
+
+{% block active1 %}active{% endblock %}
+
+{% block badges %}{{ badges["badges"] }}{% endblock %}
+
+{% block main %}
+
+
+
+    <div class="row justify-content-center p-5">
+        <div class="col-md-4">
+
+
+        <form action="/add_friend" method="post">
+            <div class="form-group">
+                <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Friend's Username" type="text">
+            </div>
+            <button class="btn btn-primary" style="margin-left: 100px;" type="submit">Add Friend</button>
+        </form>
+
+
+        </div>
+    </div>
+
+
+
+
+
+{% endblock %}
+
+
+

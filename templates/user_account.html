@@ -1,0 +1,148 @@
+
+
+
+
+{% extends "layout.html" %}
+
+{% block title %}Account{% endblock %}
+
+
+{% block active4 %}active{% endblock %}
+
+{% block badges %}{{ badges["badges"] }}{% endblock %}
+
+{% block main %}
+
+    <!--This script is for removing fotter fixed-bottom class-->
+    <script>
+        let variable = 1;
+    </script>
+
+
+    <div class="row justify-content-center pt-5">
+        <div class="col-md-8">
+
+            <div  class="content-section">
+
+            <div class="media">
+                <img class="rounded-circle account-img d-none d-md-block" src="{{ details[0]['image'] }}">
+                <img class="rounded-circle account-img-sm d-block d-md-none" src="{{ details[0]['image'] }}">
+                    <!-- For md devices -->
+                    <div class="media-body d-none d-md-inline" style="margin-left: 130px">
+                        <h2 class="account-heading" style="color: black">{{ session["username"] }}</h2>
+                        <div class="text-secondary">{{ session["email"] }}</div>
+                    </div>
+
+                    <!-- For xs devices -->
+                    <div class="media-body d-block d-md-none">
+                        <h5 class="account-heading" style="color: black">{{ session["username"] }}</h5>
+                        <div class="text-secondary">{{ session["email"] }}</div>
+                    </div>
+
+            </div>
+
+                <div class="row">
+                    <div class="col">
+
+                         <h4 style="color:black; text-align:left; margin-left: 10px">Account Info</h4>
+                         <div class="container"><hr style="background-color: black;"></div>
+                         <div>
+                             <h5 style="color: black">Bio</h5>
+                             <p style="color: black;">{{ details[0]["bio"] }}</p>
+                             <!--<form action="/account/{{ session['username'] }}" method="post">
+                                 <div class="col">
+                                    <textarea name="bio" autofocus class="form-control" style="background-color: lightgrey;" rows="5" placeholder="Update Bio">{{ details[0]["bio"] }}</textarea>
+                                </div>
+                                 <input type="submit" class="mt-2 btn btn-primary">
+                             </form>-->
+                         </div>
+                    </div>
+                </div>
+            <!-- Forms -->
+
+            <form action="/account/{{ session['username'] }}" method="POST" enctype="multipart/form-data" style="margin-bottom:30px">
+
+                <div class="col form-group">
+                    <label style="color:black" for="bio">Update Bio</label>
+                    <textarea name="bio" id="bio" autofocus class="form-control" style="background-color: lightgrey;" rows="5" placeholder="Update Bio">{{ details[0]["bio"] }}</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label style="color:black" for="username">Username</label>
+                    <input type="text" id="username" name="username" style="background-color: lightgrey" autofocus class="form-control" value="{{ session['username'] }}">
+                </div>
+
+                <div class="form-group">
+                    <label style="color:black" for="email">Email</label>
+                    <input type="email" autofocus class="form-control" id="email" name="email" style="background-color: lightgrey" value="{{ session['email'] }}">
+                </div>
+                <div style="color:black">Update Profile Picture</div>
+                <div style="color:black">
+                      <input type="file" id="myfile" name="pic"><br><br>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Update</button>
+            </form>
+
+            <h5 style="color: black">Posts by {{ session.username }} ({{ total }})</h5>
+            {% if total == 0 %}
+
+            <div>No posts</div>
+
+            {% endif %}
+
+            {% for post in posts %}
+
+                <article class="media content-section" style="border-stlye: solid; border-color: black;">
+                      <div class="media-body">
+                        <div class="article-metadata">
+                          <a class="mr-2" href="#">{{ session["username"] }}</a>
+                          <small class="text-muted">{{ post["date"] }}</small>
+                              <div>
+                                  <a class="btn btn-primary btn-sm m-1" href="/post/{{ post['id'] }}/update">Update</a>
+                                  <button type="button" class="btn btn-sm btn-danger m-1" data-toggle="modal" data-target="#deleteModal">Delete</button>
+                              </div>
+                        </div>
+                        <h3 class="article-title">{{ post['title'] }}</h3>
+                        <p class="article-content">{{ post['content'] }}</p>
+                      </div>
+                    </article>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="deleteModalLabel">Delete Post</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            Are you sure you want to delete?
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                            <a class="btn btn-danger btn-sm m-1" href="/post/{{ post['id'] }}/delete">Delete</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+

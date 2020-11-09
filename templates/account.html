@@ -1,0 +1,117 @@
+
+
+
+
+{% extends "layout.html" %}
+
+{% block title %}{{ details[0]['username'] }}{% endblock %}
+
+
+{% block badges %}{{ badges["badges"] }}{% endblock %}
+
+{% block main %}
+
+    <!--This script is for removing fotter fixed-bottom class-->
+    <script>
+        let variable = 0;
+    </script>
+
+
+    <div class="row justify-content-center pt-5">
+        <div class="col-md-8">
+
+        <div  class="content-section">
+            <div class="media">
+
+
+                <img class="rounded-circle account-img d-none d-md-block" src="{{ details[0]['image'] }}">
+                <!-- For xs -->
+                <img class="rounded-circle p-2 account-img-sm d-block d-md-none" src="{{ details[0]['image'] }}">
+                    <!-- For md devices -->
+                    <div class="media-body d-none d-md-inline" style="margin-left: 130px">
+                        <h2 class="account-heading" style="color: black">{{ details[0]['username'] }}</h2>
+                        <div class="text-secondary">{{ details[0]['email'] }}</div>
+                    </div>
+
+                    <!-- For xs devices -->
+                    <div class="media-body d-block d-md-none">
+                        <h5 class="account-heading" style="color: black">{{ details[0]['username'] }}</h5>
+                        <div class="text-secondary">{{ details[0]['email'] }}</div>
+                    </div>
+            </div>
+
+                <div class="row">
+                    <div class="col">
+
+                         <h4 style="color:black; text-align:left; margin-left: 10px">Account Info</h4>
+                         <div class="container"><hr></div>
+                         <div>
+                             <h5 style="color: black">Bio</h5>
+                             <p style="color: black;">{{ details[0]["bio"] }}</p>
+                         </div>
+                    </div>
+                </div>
+            {% if check and check.0.accepted == 0%}
+                <div><a href="/friend_requests_accept/{{ details[0]['username'] }}" class="btn btn-success">Accept</a> |
+                    <a href="/friend_requests_decline/{{ details[0]['username'] }}" class="btn btn-danger">Decline</a></div>
+            {% endif %}
+
+
+            <h5 class="mt-3" style="color: black">Posts by {{ details[0].username }} ({{ total }})</h5>
+            {% if total == 0 %}
+
+            <div>No posts</div>
+
+            {% endif %}
+
+            {% for post in posts %}
+
+                <article class="media content-section" style="border-stlye: solid; border-color: black;">
+                      <div class="media-body">
+                        <div class="article-metadata">
+                          <a class="mr-2" href="#">{{ details[0]["username"] }}</a>
+                          <small class="text-muted">{{ post["date"] }}</small>
+                        </div>
+                        <h3 class="article-title">{{ post['title'] }}</h3>
+                        <p class="article-content">{{ post['content'] }}</p>
+                      </div>
+                    </article>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="deleteModalLabel">Delete Post</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            Are you sure you want to delete?
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                            <a class="btn btn-danger btn-sm m-1" href="/post/{{ post['id'] }}/delete">Delete</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                {% endfor %}
+
+
+        </div>
+
+        </div>
+    </div>
+
+{% endblock %}
+
+
+
+
+
+
+
+

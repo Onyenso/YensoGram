@@ -1,0 +1,157 @@
+
+
+
+
+{% extends "layout.html" %}
+
+{% block title %}Home{% endblock %}
+
+<div id="up"></div>
+
+{% block badges %}{{ badges["badges"] }}{% endblock %}
+
+
+{% block main %}
+
+    <!--Layout for xs screens-->
+    <div class="row justify-content-center d-block d-md-none">
+
+        <div class="col">
+        <a href="#up" title="Back to top" class="material-icons google">north</a>
+            <nav class="mb-3">
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Newsfeed</a>
+                <a class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Friends</a>
+                </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+
+                    {% if not posts %}
+
+                    <p style="text-align: center" class='text-muted mt-3'>You and your friends have no posts yet</p>
+
+                    {% else %}
+
+                        {% for post in posts %}
+                            <article class="media content-section m">
+                              <div class="media-body">
+                                <div class="article-metadata">
+                                  <a class="mr-2" href="/account/{{ post.username }}">{{ post.username }}</a>
+                                  <small class="text-muted">{{ post.date }}</small>
+                                </div>
+                                <h3><a class="article-title" href="/post/{{ post.id }}">{{ post.title }}</a></h3>
+                                <p class="article-content">{{ post.content }}</p>
+                              </div>
+                            </article>
+                        {% endfor %}
+
+                    {% endif %}
+
+
+                </div>
+
+                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+
+                    <div class="content-section-home">
+                        <p class='text-muted'>Users who accept your friend request will be shown here.
+
+                        {% if not friends %}
+
+                            <p style="font-size:large;">Ouch, you have no friends.</p>
+
+                            <div><a href="/add_friend">Add Friend</a></div>
+
+                        {% else %}
+
+                                {% for row in friends %}
+
+                                    <div>
+                                        <a href="/{{ row['id'] }}/{{ row['current_username'] }}">{{ row["current_username"] }}<span class="badge badge-light">{{ unread[row['id']] }}</span></a>, your friend since {{ row["time_accepted"] }}
+                                    </div>
+
+                                {% endfor %}
+
+                        {% endif %}
+                        </p>
+                  </div>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <!--Layout for md screens-->
+    <div class="row justify-content-center d-none d-md-flex">
+
+        <div class="col-md-8">
+
+            <a href="#up" title="Back to top" class="material-icons google">north</a>
+
+            <h3 style="text-align: center">Newsfeed</h3>
+
+            {% if not posts %}
+
+                <p style="text-align: center" class='text-muted'>You and your friends have no posts yet</p>
+
+            {% else %}
+
+                {% for post in posts %}
+                    <article class="media content-section">
+                      <div class="media-body">
+                        <div class="article-metadata">
+                          <a class="mr-2" href="/account/{{ post.username }}">{{ post.username }}</a>
+                          <small class="text-muted">{{ post.date }}</small>
+                        </div>
+                        <h3><a class="article-title" href="/post/{{ post.id }}">{{ post.title }}</a></h3>
+                        <p class="article-content">{{ post.content }}</p>
+                      </div>
+                    </article>
+                {% endfor %}
+
+            {% endif %}
+
+
+        </div>
+
+        <div class="col-md-4">
+          <h3 style="text-align: center">Friends</h3>
+          <div class="content-section-home">
+            <p class='text-muted'>Users who accept your friend request will be shown here.
+
+            {% if not friends %}
+
+                <p style="font-size:large;">Ouch, you have no friends.</p>
+
+                <div><a href="/add_friend">Add Friend</a></div>
+
+            {% else %}
+
+                    {% for row in friends %}
+
+                        <div>
+                            <a href="/{{ row['id'] }}/{{ row['current_username'] }}">{{ row["current_username"] }}<span class="badge badge-light">{{ unread[row['id']] }}</span></a>, your friend since {{ row["time_accepted"] }}
+                        </div>
+
+                    {% endfor %}
+
+            {% endif %}
+            </p>
+          </div>
+        </div>
+
+    </div>
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,90 @@
+
+
+
+
+{% extends "layout.html" %}
+
+
+{% block title %}{% if not post %}New Post{% else %}Update Post{% endif %}{% endblock %}
+
+
+
+{% block user %}{{ session["username"] }}{% endblock %}
+
+{% block active3 %}{% if not post %}active{% endif %}{% endblock %}
+
+
+{% block badges %}{{ badges["badges"] }}{% endblock %}
+
+
+
+{% block main %}
+
+
+    <div class="row justify-content-center pt-5">
+        <div class="col-md-8">
+
+            <div  class="content-section">
+
+
+                <div class="row">
+                    <div class="col">
+
+                         <h4 style="color:black; text-align:left; margin-left: 10px">{{ legend }}</h4>
+                         <div class="container"><hr style="background-color: black;"></div>
+                         <div>
+
+                            <!--If Updating a post-->
+                             {% if post %}
+
+                             <form action="/post/{{ post.0.id }}/update" method="post">
+
+                                 <div class="form-group">
+                                    <label style="color:black" for="title">Title</label>
+                                    <input type="text" autofocus class="form-control" id="title" name="title" placeholder="Required" value="{{ post.0.title }}" style="background-color: lightgrey">
+                                </div>
+
+                                <div class="form-group">
+                                    <label style="color:black" for="content">Content</label>
+                                    <textarea name="content" autofocus class="form-control" id="content" style="background-color: lightgrey" rows="5">{{ post.0.content }}</textarea>
+                                </div>
+                                 <input type="submit" value="Post" class="mt-2 btn btn-primary">
+                             </form>
+                             <!--If creating a post-->
+                             {% else %}
+                                 <form action="/post/new" method="post">
+
+                                     <div class="form-group">
+                                        <label style="color:black" for="title">Title</label>
+                                        <input type="text" autofocus class="form-control" id="title" name="title" placeholder="Required" style="background-color: lightgrey">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label style="color:black" for="content">Content</label>
+                                        <textarea name="content" autofocus class="form-control" id="content" style="background-color: lightgrey" rows="5"></textarea>
+                                    </div>
+                                    <input type="submit" value="Post" class="mt-2 btn btn-primary">
+                             </form>
+
+                             {% endif %}
+                         </div>
+                    </div>
+                </div>
+
+        </div>
+
+        </div>
+    </div>
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
