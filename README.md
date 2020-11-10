@@ -11,12 +11,12 @@ has no friends and thus no posts to be seen. The application allows the user to 
 it will be visible to other users who are friends with him/her and vice versa. The user can also send messages to other users
 who are friends with him. YensoGram also allows the abilty to update and delete posts or chats made by the user.
 
-If you're familiar with Flask, [application.py](/application.py) is where the main backend source code lives on. [helpers.py](/helpers.py) contains some helper functions that
+If you're familiar with Flask, [application.py](/application.py) is where the main back-end source code lives on. [helpers.py](/helpers.py) contains some helper functions that
 are used in [application.py](/application.py).
-The frontend html files are in [templates](/templates) folder and [finance.db](/finance.db) is a sqlite database for the application. A version of YensoGram
+The front-end html files are in [templates](/templates) folder and [finance.db](/finance.db) is a sqlite database for the application. A version of YensoGram
 built with Django is underway.
 
-A video of this application in action is at:
+A video of this project's demonstration is at:
 - https://youtu.be/6YzcJwd6vOk for desktop view
 - https://youtu.be/A6aj--0nBsg for mobile view
 ### Creator
