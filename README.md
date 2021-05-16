@@ -1,8 +1,8 @@
 # YensoGram
 
-This project was created as a result of the requirement to complete [Harvard University's CS50 Final Project](https://cs50.harvard.edu/x/2020/project/).
+This project was created as a result of the requirement to complete [Harvard University's CS50x Final Project](https://cs50.harvard.edu/x/2020/project/).
 
-YensoGram is basically a blog web application that allows a user to make posts and send messages in form of chats to other users. It was developed using Python (Flask), SQL, JavaScript, HTML and CSS.
+YensoGram is basically a web application that allows a user to send messages in form of chats to other users and make posts. It was developed using Python (Flask), SQL, JavaScript, HTML and CSS.
 
 ### PROJECT DESCRIPTION
 
